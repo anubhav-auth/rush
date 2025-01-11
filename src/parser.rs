@@ -1,4 +1,4 @@
-pub fn parse_input(input: &str) -> Result<(String , Vec<String>), &'static str>{
+pub fn parse_input(input: &str) -> Result<(String , Vec<&str>), &'static str>{
     let parts:Vec<&str> = input.split_whitespace().collect();
 
     if parts.is_empty(){
@@ -6,7 +6,7 @@ pub fn parse_input(input: &str) -> Result<(String , Vec<String>), &'static str>{
     }
 
     let command = parts[0].to_string();
-    let args = parts[1..].iter().map(|s| s.to_string()).collect();
+    let args = parts[1..].to_vec();
 
     Ok((command, args))
 }
