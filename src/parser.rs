@@ -23,14 +23,14 @@ pub fn handle_piping(commands: Vec<(String, Vec<&str>)>) -> Result<(), &'static 
 
     for (i, (command, args)) in commands.iter().enumerate() {
         let stdin = match previous_output {
-            Some(output) => Stdio::from(output), // Pipe output from previous command
-            None => Stdio::inherit(), // First command takes input from terminal
+            Some(output) => Stdio::from(output), 
+            None => Stdio::inherit(), 
         };
 
         let stdout = if i == commands.len() - 1 {
-            Stdio::inherit() // Last command prints to terminal
+            Stdio::inherit() 
         } else {
-            Stdio::piped() // Intermediate commands pipe their output
+            Stdio::piped() 
         };
 
         let mut child = Command::new(command)
